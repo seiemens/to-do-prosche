@@ -5,9 +5,7 @@ import users from './users';
 import { State } from './models/state';
 import { User } from './models/user';
 import { RequestError, ToDoError } from './models/error';
-import { METHODS } from 'http';
 import { uuid } from 'uuidv4';
-import { ToDo } from './models/todo';
 
 
 const router = express.Router();
