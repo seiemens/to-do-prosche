@@ -23,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import StateService from './services/StateService/state.service';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     UserPanelComponent,
     CreateTodoComponent,
     EditTodoComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     ...environment.providers,
+    StateService
   ],
   bootstrap: [AppComponent]
 })

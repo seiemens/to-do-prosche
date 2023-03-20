@@ -30,7 +30,7 @@ export class LoginComponent {
       next: response => {
         localStorage.setItem('user', JSON.stringify(response.user));
         console.log('success: OnSubmit in Client: ', response.access_token); 
-        this.router.navigateByUrl("/view-survey"); 
+        this.router.navigateByUrl("/view-todos"); 
       },
       error: err => console.error('error', err)
     });

@@ -1,1 +1,11 @@
-<p>signup works!</p>
+<div id="signup">
+    <h1>signup</h1>
+    <form #signupForm (ngSubmit)="onSubmit()" >
+        <input type="email" name="username" id="username" placeholder="e-mail" [(ngModel)]="email"><br>
+        <input type="number" name="username" id="username" placeholder="age" [(ngModel)]="age"><br>
+        <input type="text" name="username" id="username" placeholder="name" [(ngModel)]="name"><br>
+        <input type="password" name="password" id="password" placeholder="password" [(ngModel)]="password"><br>
+        <button type="submit">submit</button>
+    </form>
+    <a routerLink="/login">Already have an account?</a>
+</div>
