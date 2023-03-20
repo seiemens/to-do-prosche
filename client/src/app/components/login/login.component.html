@@ -1,1 +1,9 @@
-<p>login works!</p>
+<div id="login">
+    <h1>login</h1>
+    <form #loginForm (ngSubmit)="onSubmit()">
+        <input type="email" name="Username" id="email" placeholder="e-mail" [(ngModel)]="email"><br>
+        <input type="password" name="password" id="password" placeholder="password" [(ngModel)]="password"><br>
+        <button type="submit">submit</button>
+    </form>
+    <a routerLink="/signup">No Account yet?</a>
+</div>

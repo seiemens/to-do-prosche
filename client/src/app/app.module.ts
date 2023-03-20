@@ -9,9 +9,9 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { SignupComponent } from './components/signup/signup.component';
 import { ViewTodosComponent } from './components/view-todos/view-todos.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
-import { TodosPanelComponent } from './components/todos-panel/todos-panel.component';
 import { CreateTodoComponent } from './components/create-todo/create-todo.component';
 import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,6 @@ import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
     SignupComponent,
     ViewTodosComponent,
     UserPanelComponent,
-    TodosPanelComponent,
     CreateTodoComponent,
     EditTodoComponent,
   ],
@@ -30,7 +29,9 @@ import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    ...environment.providers,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
