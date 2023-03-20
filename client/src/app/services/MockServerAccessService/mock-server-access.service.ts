@@ -40,7 +40,7 @@ export class MockServerAccessService implements IServerAccessService{
       return of([{email:'',age:0,name:'',isAdmin:false,password: ''}]);
     };
 
-    getUserById(): Observable<User> {
+    getUserById(id: string): Observable<User> {
       return of(new User('', false, 0, '', ''));
     }
 

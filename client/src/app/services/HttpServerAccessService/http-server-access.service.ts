@@ -45,32 +45,56 @@ export class HttpServerAccessService implements IServerAccessService{
     };
 
     login(email: string, password: string): Observable<LoginResponse> {
-      return of();
-    };
+      const response = this.http.post<LoginResponse>('http://localhost:5000/token', { email, password });
+      response.subscribe({
+        next: response => {
+          console.log('login successful', response);
+          this.currentUser = response.user;
+          console.log('LoginCall: ', this.currentUser);
+        },
+        error: err => console.error('error', err),
+      });
+  
+      return response;
+    }
+  
 
     newToDo(title: string, description: string): Observable<IDResponse> {
-      return of();
-    };
+      let owner: string = this.currentUser.email;
+      const response = this.http.post<IDResponse>('http://localhost:5000/todos',{ owner, title, description });
+      return response;
+    }
+  
 
     getToDos(): Observable<Array<ToDo>> {
-      return of();
-    };
+      const data = this.http.get<Array<ToDo>>('http://localhost:5000/todos',{});
+      return data;
+    }
+  
 
     updateToDo( title: string, description: string, id: string): Observable<ToDo> {
-      return of();
-    };
-
+      let params: URLSearchParams = new URLSearchParams();
+      params.set("surveyid", id);
+      const data = this.http.patch<ToDo>('http://localhost:5000/todos/' + id, { title, description });
+      return data;
+    }
+  
 
     getToDoById(id: string): Observable<ToDo> {
-      return of();
-    };
-
+      const data = this.http.get<ToDo>('http://localhost:5000/surveys/' + id,{});
+      return data;
+    }
+  
     getUsers(): Observable<Array<User>> {
-      return of([{email:'',age:0,name:'',isAdmin:false,password: ''}]);
-    };
 
-    getUserById(): Observable<User> {
-      return of(new User('', false, 0, '', ''));
+      const data = this.http.get<Array<User>>('http://localhost:5000/users', {});
+      return data;
+    }
+  
+
+    getUserById(id: string): Observable<User> {
+      const data = this.http.get<User>('http://localhost:5000/users/' + id, {})
+      return data;
     }
 
 }
