@@ -12,3 +12,7 @@ export interface ToDoResponse {
 export interface UserResponse {
   users: User[];
 }
+
+export interface SingleUserResponse {
+  user: User;
+}

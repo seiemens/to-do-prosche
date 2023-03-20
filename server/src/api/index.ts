@@ -90,7 +90,9 @@ router.post('/token', (req, res) => {
 
   // if exists: return 200 + access_token with email
   if (user) {
-    res.status(200).json({ user: user, access_token: uuid() });
+    if(user.password === req.body.password) {
+      res.status(200).json({ user: user, access_token: uuid() });
+    }
   }
   // if not exists: return 403
   else {
@@ -101,7 +103,7 @@ router.post('/token', (req, res) => {
 
 router.get<{}, MessageResponse>('/', (req, res) => {
   res.json({
-    message: 'API - 👋🌎🌍🌏',
+    message: 'Hey, you found the api. lets see which endpoints you can find, shall we?',
   });
 });
 

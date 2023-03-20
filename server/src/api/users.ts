@@ -1,7 +1,7 @@
 import express from 'express';
 import { User } from './models/user';
 import { State } from './models/state';
-import MessageResponse from '../interfaces/MessageResponse';
+import MessageResponse, { SingleUserResponse } from '../interfaces/MessageResponse';
 import { RequestError } from './models/error';
 
 const router = express.Router();
@@ -14,10 +14,14 @@ router.get('/', (req, res) => {
 });
 
 
-router.get<{}, MessageResponse>('/:userid', (req, res) => {
+router.get<{}, SingleUserResponse>('/:userid', (req, res) => {
 
   console.log(req.params);
-  res.sendStatus(200);
+  let userPerhaps = state.findUser(req.body.email);
+  if(userPerhaps) {
+    
+    res.status(200).send({user: userPerhaps});
+  }
 
 });
 
@@ -38,5 +42,6 @@ router.post<{}, MessageResponse>('/', (req, res) => {
   }
 
 });
+
 
 export default router;
