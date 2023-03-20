@@ -10,6 +10,7 @@ import IServerAccessService from 'src/app/services/server-access.service';
 export class LoginComponent {
   
   email = '';
+  password = '';
 
 
   constructor(private userService: IServerAccessService, private router: Router) { 
@@ -25,14 +26,11 @@ export class LoginComponent {
 
   public onSubmit() {
     console.log('email: ' , this.email)
-    this.userService.login(this.email).subscribe({
+    this.userService.login(this.email, this.password).subscribe({
       next: response => {
         localStorage.setItem('user', JSON.stringify(response.user));
-        // localStorage.setItem('email', response.user.email);
-        // localStorage.setItem('isAdmin', JSON.stringify(response.user.isAdmin));
         console.log('success: OnSubmit in Client: ', response.access_token); 
         this.router.navigateByUrl("/view-survey"); 
-        // this.state.UpdateUser(response.access_token); 
       },
       error: err => console.error('error', err)
     });

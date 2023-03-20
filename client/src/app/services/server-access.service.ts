@@ -1,7 +1,7 @@
 import { Observable, of } from "rxjs";
 
 export default class IServerAccessService {
-    currentUser: User = new User('', false, 0, '');
+    currentUser: User = new User('', false, 0, '', '');
 
     createUser(email: string, age: number, name: string): Observable<SignupResponse> {
         return of();
@@ -29,11 +29,11 @@ export default class IServerAccessService {
       };
   
       getUsers(): Observable<Array<User>> {
-        return of([{email:'',age:0,name:'',isAdmin:false}]);
+        return of([{email:'',age:0,name:'',isAdmin:false,password: ''}]);
       };
   
       getUserById(): Observable<User> {
-        return of(new User('', false, 0, ''));
+        return of(new User('', false, 0, '', ''));
       }
 
 }
