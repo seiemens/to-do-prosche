@@ -28,7 +28,7 @@ export class SignupComponent {
 
 
     // best practice
-    this.userService.createUser(this.email, this.age, this.name).subscribe({
+    this.userService.createUser(this.email, this.age, this.name, this.password).subscribe({
       next: response => { 
         console.log('success: post token response', response.id); 
         this.router.navigateByUrl("/view-survey"); 

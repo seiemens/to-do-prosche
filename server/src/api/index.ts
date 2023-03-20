@@ -55,7 +55,7 @@ router.post('/signup', (req, res) => {
 
   try {
     console.log('params ', req.body);
-    if (!req.body.age || !req.body.name || !req.body.email) {
+    if (!req.body.age || !req.body.name || !req.body.email || !req.body.password) {
       res.status(500).send(RequestError.BodyError)
       return;
     }
@@ -63,7 +63,7 @@ router.post('/signup', (req, res) => {
     let user = state.findUser(req.body.email);
     console.log('userSearch ', user);
     if (!user) {
-      user = new User('', req.body.age, req.body.email, req.body.name, false);
+      user = new User('', req.body.age, req.body.email, req.body.name, false, req.body.password );
       // if not exists: new user with new id, return 202 + id
       state.users.push(user);
       state.writeToFile();

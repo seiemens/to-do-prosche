@@ -29,7 +29,7 @@ router.post<{}, MessageResponse>('/', (req, res) => {
       res.status(500).send(RequestError.BodyError);
     }
 
-    new User('', req.body.age, req.body.email, req.body.name, false);
+    new User('', req.body.age, req.body.email, req.body.name, false, req.body.password);
     state.writeToFile();
     res.sendStatus(201);
   } catch {

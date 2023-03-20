@@ -11,7 +11,7 @@ export class MockServerAccessService implements IServerAccessService{
 
   currentUser: User = new User('', false, 0, '', '');
 
-  createUser(email: string, age: number, name: string): Observable<SignupResponse> {
+  createUser(email: string, age: number, name: string, password: string): Observable<SignupResponse> {
       return of();
     };
 

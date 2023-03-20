@@ -1,7 +1,9 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import IServerAccessService, { IDResponse, LoginResponse, SignupResponse, ToDo, User } from '../server-access.service';
+import StateService from '../StateService/state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,15 +24,24 @@ export class HttpInterceptorMain implements HttpInterceptor {
   }
 }
 
-
+@Injectable({
+  providedIn: 'root'
+})
 export class HttpServerAccessService implements IServerAccessService{
 
-  constructor() { }
+  constructor(private http: HttpClient, private route: Router, private state: StateService) { 
+    let emailPerhaps = localStorage.getItem('email');
+    if(emailPerhaps) {
+        this.currentUser.email = emailPerhaps;
+    } 
+
+  }
 
   currentUser: User = new User('', false, 0, '', '');
 
-  createUser(email: string, age: number, name: string): Observable<SignupResponse> {
-      return of();
+  createUser(email: string, age: number, name: string, password: string): Observable<SignupResponse> {
+      const response = this.http.post<SignupResponse>('http://localhost:5000/signup', {email, age, name, password});
+      return response;
     };
 
     login(email: string, password: string): Observable<LoginResponse> {

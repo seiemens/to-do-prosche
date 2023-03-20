@@ -18,9 +18,14 @@ export class State {
     }
     
     static readFromFile(): State {
+      let data:Buffer;
       const state = new State();
-
-      const data:Buffer = fs.readFileSync('src/data.json');
+      try {
+         data = fs.readFileSync('src/data.json');
+      } catch {
+        fs.writeFileSync('src/data.json', '{"todos":[], "users":[]}');
+        data = fs.readFileSync('src/data.json');
+      }
       const dataInString = data.toString();
       const stateFromFile = JSON.parse(dataInString);
   
@@ -31,7 +36,7 @@ export class State {
 
       // get users
       stateFromFile.users.forEach((element:User) => {
-        state.users.push(new User(element.id, element.age, element.email, element.name, element.isAdmin));
+        state.users.push(new User(element.id, element.age, element.email, element.name, element.isAdmin, element.password));
       });
   
       return state;
