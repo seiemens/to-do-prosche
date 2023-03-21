@@ -5,8 +5,7 @@ export class ToDo {
     owner = '';
     title = '';
     description = '';
-    question = '';
-    answers = new Array<string>();
+    state = 0;
 
     constructor(id:string, owner:string, title:string, desc:string) {
       if (id == null || id == '') {

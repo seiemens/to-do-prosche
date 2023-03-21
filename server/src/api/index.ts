@@ -49,9 +49,6 @@ router.use((req: any, res: any, next: any) => {
 
 
 router.post('/signup', (req, res) => {
-  //const err = new SurveyError('index', 'Couldnt create user' + req.path, 100);
-  // res.status(500).send(err);
-  //return;
 
   try {
     console.log('params ', req.body);
@@ -64,7 +61,6 @@ router.post('/signup', (req, res) => {
     console.log('userSearch ', user);
     if (!user) {
       user = new User('', req.body.age, req.body.email, req.body.name, false, req.body.password );
-      // if not exists: new user with new id, return 202 + id
       state.users.push(user);
       state.writeToFile();
 
@@ -88,13 +84,11 @@ router.post('/token', (req, res) => {
   const user = state.findUser(req.body.email);
   console.log('email of req: ', req.body.email);
 
-  // if exists: return 200 + access_token with email
   if (user) {
     if(user.password === req.body.password) {
       res.status(200).json({ user: user, access_token: uuid() });
     }
   }
-  // if not exists: return 403
   else {
     res.status(403).send(new ToDoError('index', 'Couldnt Access user on Request: ' + req.path, 403));
   }
