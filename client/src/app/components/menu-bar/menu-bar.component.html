@@ -1,12 +1,7 @@
 <div id="menu">
-
-        
-
     <h4 *ngIf="currentUser">user = {{ currentUser.email }}</h4>
     <button (click)="logout()">Logout</button>
-    <button routerLink="/new-survey">Create a new Survey</button>
-    <button routerLink="/view-survey">View Surveys</button>
-    <button *ngIf="this.currentUser.isAdmin == true" routerLink="/user-management">User Management</button>
-
-
+    <button routerLink="/new-todo">Create a new todo</button>
+    <button routerLink="/view-todo">View todos</button>
+    <button *ngIf="this.currentUser.isAdmin == true" routerLink="/admin-panel">Admin Panel</button>
 </div>

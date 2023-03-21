@@ -1,1 +1,10 @@
-<p>create-todo works!</p>
+
+<div id="create-todo">
+    <h1>Create Todo</h1>
+    <form #createToDoForm (ngSubmit)="onSubmit()" >
+        <input type="text" name="title" id="title" placeholder="*title" [(ngModel)]="title"><br>
+        <input type="text" name="description" id="description" placeholder="*description" [(ngModel)]="description"><br>
+        <button type="submit">confirm</button>
+    </form>
+    <button routerLink="/view-todo">Go Back</button>
+</div>

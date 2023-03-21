@@ -10,10 +10,11 @@ import StateService from 'src/app/services/StateService/state.service';
 })
 export class SignupComponent {
 
-  email = '';
-  age = 0;
-  name = '';
-  password = '';
+  error: string = '';
+  email: string = '';
+  age: number = 0;
+  name: string = '';
+  password: string = '';
 
   constructor(private userService: IServerAccessService, private router: Router, private state: StateService) { 
   }
@@ -21,22 +22,24 @@ export class SignupComponent {
   ngOnInit(): void {
   }
 
-  /**
-   * onSubmit
-   */
+
+
    public onSubmit() {
+    if(typeof this.age == "number" && this.password.length > 7) {
 
-
-    // best practice
-    this.userService.createUser(this.email, this.age, this.name, this.password).subscribe({
-      next: response => { 
-        console.log('success: post token response', response.id); 
-        this.router.navigateByUrl("/view-survey"); 
-        this.state.UpdateUser(response.id); 
-      },
-      error: err => console.log(err),
-    });
-    
+      
+      this.userService.createUser(this.email, this.age, this.name, this.password).subscribe({
+        next: response => { 
+          console.log('success: post token response', response.id); 
+          this.router.navigateByUrl("/view-todo"); 
+          this.state.UpdateUser(response.id); 
+        },
+        error: err => console.log(err),
+      });
+      
+    } else {
+      this.error = "Inputs wrong. Please validate"
+    }
   }
 
 

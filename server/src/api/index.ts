@@ -67,7 +67,7 @@ router.post('/signup', (req, res) => {
       res.status(202).send({ id: user.id });
     }
     else{
-      res.status(200).send(new ToDoError('index', 'User Exists ' + req.path, 200));
+      res.status(404).send(new ToDoError('index', 'User Exists ' + req.path, 200));
     }
 
 

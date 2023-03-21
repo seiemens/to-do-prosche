@@ -18,7 +18,7 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(private serverAccessService: IServerAccessService, private router: Router) { 
     this.dataSource = [];
-    this.displayedColumns = ["name", "age", "email", "password", "edit", "todos"];
+    this.displayedColumns = ["name", "age", "email", "todos"];
   }
 
   ngOnInit(): void {
@@ -33,13 +33,13 @@ export class AdminPanelComponent implements OnInit {
   }
 
   editUser(element: any): void {
-    let email = element.email;
-    this.router.navigate(["/edit-user/" + email]);
+    let id = element.id;
+    this.router.navigate(["/edit-user/" + id]);
   }
 
   editTodos(element: any): void {
-    let email = element.email;
-    this.router.navigate(['/view-todos/' + email]);
+    let id = element.id;
+    this.router.navigate(['/view-todos/' + id]);
   }
 
 }

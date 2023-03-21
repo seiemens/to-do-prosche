@@ -30,6 +30,7 @@ router.post('/', (req, res) => {
         const newToDo = new ToDo('', req.headers.authorization, req.body.title, req.body.description);
         state.todos.push(newToDo);
         state.writeToFile();
+        res.status(200).send();
     }
 });
 
@@ -85,7 +86,6 @@ router.delete('/:todoId', (req, res) => {
             }
             res.status(200).send();
         }
-        res.status(403).send();
     }
     res.status(403).send();
 });

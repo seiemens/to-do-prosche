@@ -30,7 +30,7 @@ export class LoginComponent {
       next: response => {
         localStorage.setItem('user', JSON.stringify(response.user));
         console.log('success: OnSubmit in Client: ', response.access_token); 
-        this.router.navigateByUrl("/view-todos"); 
+        this.router.navigateByUrl("/view-todo"); 
       },
       error: err => console.error('error', err)
     });
