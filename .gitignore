@@ -50,3 +50,5 @@ e2e/*.map
 # Ignore all local history of files
 .history
 .ionide
+*.tmp
+Documentation/~$23 Doku.docx
