@@ -5,6 +5,8 @@ import { ToDo } from './models/todo';
 const router = express.Router();
 const state = State.readFromFile();
 
+
+//returns all the Users
 router.get('/', (req, res) => {
     try {
 
@@ -23,6 +25,7 @@ router.get('/', (req, res) => {
     
 });
 
+//creates a new ToDo, if all data are sent with the body
 router.post('/', (req, res) => {
     if(!req.body.title || !req.body.description || !req.headers.authorization) {
         res.status(404).send('request denied');
@@ -34,6 +37,8 @@ router.post('/', (req, res) => {
     }
 });
 
+
+//edits a ToDo depending on the Data give, eg. if only Title is given, only the title will be changed
 router.patch('/', (req, res) => {
     if(!req.body.id) {
         res.status(404).send('no auth detected, request rejected');
@@ -54,6 +59,8 @@ router.patch('/', (req, res) => {
 
 });
 
+
+//gets a specific todo via the id in the route params
 router.get('/:todoId', (req, res) => {
     console.log(req.params)
     if(req.params.todoId) {
@@ -71,6 +78,8 @@ router.get('/:todoId', (req, res) => {
     }
 });
 
+
+//deletes a specific ToDo by ID given by Route Params
 router.delete('/:todoId', (req, res) => {
     if(req.params.todoId) {
         let todoPerhaps;

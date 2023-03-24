@@ -56,7 +56,7 @@ export interface SignupResponse {
     title: string;
     description: string;
     owner: string;
-    state: number;
+    state: string;
   }
 
   export class User {

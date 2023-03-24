@@ -17,8 +17,5 @@ export class User {
       this.isAdmin = isAdmin;
       this.password = password;
     }
-  
-    getAge() {
-      return 'Age=' + this.age;
-    }
+
   }

@@ -5,7 +5,7 @@ export class ToDo {
     owner = '';
     title = '';
     description = '';
-    state = 0;
+    state = '';
 
     constructor(id:string, owner:string, title:string, desc:string) {
       if (id == null || id == '') {
@@ -17,6 +17,7 @@ export class ToDo {
       this.owner = owner;
       this.title = title;
       this.description = desc;
+      this.state = 'open';
     }
   
     test() {

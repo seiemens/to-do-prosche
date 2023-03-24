@@ -67,7 +67,7 @@ export class ViewTodosComponent {
   }
 
   deleteToDo(element: ToDo) {
-
+    
   }
 
 }
