@@ -79,8 +79,9 @@ router.get('/:todoId', (req, res) => {
 });
 
 
-//deletes a specific ToDo by ID given by Route Params
+//deletes a specific ToDo by ID given by Route body
 router.delete('/:todoId', (req, res) => {
+    console.log(req.params.todoId);
     if(req.params.todoId) {
         let todoPerhaps;
         state.todos.find(elem => {
@@ -94,9 +95,12 @@ router.delete('/:todoId', (req, res) => {
                 state.todos.splice(index, 1);
             }
             res.status(200).send();
+        } else {
+            res.status(404).send();
         }
+    } else {
+        res.status(403).send();
     }
-    res.status(403).send();
 });
 
 export default router;

@@ -22,7 +22,10 @@ export default class IServerAccessService {
       updateToDo( title: string, description: string, id: string): Observable<ToDo> {
         return of();
       };
-  
+      
+      deleteToDo(id: string): Observable<any> {
+        return of();
+      }
   
       getToDoById(id: string): Observable<ToDo> {
         return of();

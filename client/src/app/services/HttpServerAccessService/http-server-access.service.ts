@@ -79,6 +79,11 @@ export class HttpServerAccessService implements IServerAccessService{
       return data;
     }
   
+    deleteToDo(id: string): Observable<any> {
+      console.log(id);
+      const data = this.http.delete<ToDo>('http://localhost:5000/todos/' + id);
+      return data;
+    }
 
     getToDoById(id: string): Observable<ToDo> {
       const data = this.http.get<ToDo>('http://localhost:5000/surveys/' + id,{});

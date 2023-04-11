@@ -67,7 +67,12 @@ export class ViewTodosComponent {
   }
 
   deleteToDo(element: ToDo) {
-    
+    this.ServerAccess.deleteToDo(element.id).subscribe({
+      next: response => {
+        this.loadTable();
+      },
+      error: err => {console.error('error: ', err);}
+    });
   }
 
 }
